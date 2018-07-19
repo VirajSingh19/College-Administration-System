@@ -29,18 +29,34 @@ public class Settings extends HttpServlet {
 		String user = (String)session.getAttribute("user");
 		String oldpssd = request.getParameter("oldpssd");
 		String newpssd = request.getParameter("newpssd");
-		RequestDispatcher rd = request.getRequestDispatcher("Settings.jsp");
+		String delpssd = request.getParameter("delpssd");
 		PrintWriter syso = response.getWriter();
 		
+		RequestDispatcher rd = request.getRequestDispatcher("Settings.jsp");
+		
 		try {
+			
 		Database d = new Database();
-		int i = Database.update(user, oldpssd, newpssd);
-		if(i==1)
-		syso.println("<h3 align='center'> Successfully Updated </h3>");
-		else
-		syso.println("<h3 align='center'> Can't Update </h3>");
-		rd.include(request, response);
-		} catch (Exception e) {
+		if(oldpssd.length()>0 && newpssd.length()>0)
+		{
+			int i = Database.update(user, oldpssd, newpssd);
+			if(i==1)
+			syso.println("<h3 align='center'> Successfully Updated </h3>");
+			else
+			syso.println("<h3 align='center'> Can't Update </h3>");
+			rd.include(request, response);
+		}
+		else if(delpssd.length()>0)
+		{
+			int i = Database.delete(user, delpssd);
+			if(i==1)
+			syso.println("<h3 align='center'> Account Deleted </h3>");
+			else
+			syso.println("<h3 align='center'> Wrong Password </h3>");
+			rd.include(request, response);				
+		}
+		}
+		catch (Exception e) {
 			syso.println("Exception occurred "+e.getMessage());
 			rd.include(request, response);
 		}
