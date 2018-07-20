@@ -21,49 +21,64 @@ public class Admin extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	session = request.getSession();
 		PrintWriter syso  = response.getWriter();
+		String u = request.getParameter("select");
 		
-			try {
-			Database d = new Database();
-			String s = Database.admin();
-		    String str[] = s.split("#");
-		    syso.println("<div class='container'>");
-			syso.println("<table class='table'>");
-			syso.println("<thead>");
-			syso.println("<tr>");
-			syso.println("<th>UserName </th>");
-			syso.println("<th>Password </th>");
-			syso.println("<th>Rollno </th>");
-			syso.println("</tr>"); 
-			syso.println("</thead>");
-			syso.println("<tbody>");
-			 for(String i : str)
-			 {
-				 String up[] = i.split(":");
-				 syso.println("<tr>");
-				 syso.println("<td> "+up[0]+"</td>");
-				 syso.println("<td> "+up[1]+"</td>");
-				 syso.println("<td> "+up[2]+"</td>");
-				 syso.println("</tr>");
-			 }
-			 syso.println("</tbody>");			
-			 syso.println("</table>");			
-			 syso.println("</div>");	
-			 RequestDispatcher rd = request.getRequestDispatcher("Admin.jsp");
-			 rd.include(request, response);
-			}
-			catch(Exception e)
-			{
-				syso.println("Exception occurred!"+e.getMessage());
-				RequestDispatcher rd = request.getRequestDispatcher("Admin.jsp");
-			    rd.include(request, response);				
-			}
-			
-			
-			
-		}
+		if(u.equals("Courses"))
+			syso.println("Courses");
+		else if(u.equals("Table"))
+			printtable(syso);
+		else if(u.equals("Fee"))
+			syso.println("Fee");
+		else if(u.equals("Modify"))
+			syso.println("Modify");
+		RequestDispatcher rd = request.getRequestDispatcher("Admin.jsp");
+		rd.include(request, response);
+		
+	}
 		
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	}
 
+	static void printtable(PrintWriter syso)
+	{
+		
+		
+		try {
+		Database d = new Database();
+		String s = Database.admin();
+	    String str[] = s.split("#");
+	    syso.println("<div class='container'>");
+		syso.println("<table class='table'>");
+		syso.println("<thead>");
+		syso.println("<tr>");
+		syso.println("<th>UserName </th>");
+		syso.println("<th>Password </th>");
+		syso.println("<th>Rollno </th>");
+		syso.println("</tr>"); 
+		syso.println("</thead>");
+		syso.println("<tbody>");
+		 for(String i : str)
+		 {
+			 String up[] = i.split(":");
+			 syso.println("<tr>");
+			 syso.println("<td> "+up[0]+"</td>");
+			 syso.println("<td> "+up[1]+"</td>");
+			 syso.println("<td> "+up[2]+"</td>");
+			 syso.println("</tr>");
+		 }
+		 syso.println("</tbody>");			
+		 syso.println("</table>");			
+		 syso.println("</div>");	
+		}
+		catch(Exception e)
+		{
+			syso.println("Exception occurred!"+e.getMessage());
+		}
+		
+		
+		
+
+		
+	}
 }

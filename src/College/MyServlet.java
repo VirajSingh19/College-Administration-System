@@ -15,7 +15,7 @@ import javax.servlet.http.HttpSession;
 @WebServlet("/MyServlet")
 public class MyServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+	public static HttpSession session;
     public MyServlet() {
     }
 
@@ -37,11 +37,11 @@ public class MyServlet extends HttpServlet {
 		}
 		else
 		{
-			HttpSession session = request.getSession();
+			session = request.getSession();
 			session.setAttribute("user", fn);
 			if(fn.equalsIgnoreCase("Viraj"))
 			{
-			RequestDispatcher r = request.getRequestDispatcher("Admin");
+			RequestDispatcher r = request.getRequestDispatcher("Admin.jsp");
             r.forward(request, response);	
 			}
 			else 
