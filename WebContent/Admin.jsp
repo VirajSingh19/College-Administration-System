@@ -19,7 +19,7 @@
        <a href="Settings.jsp"  title="Login"><img class="mt4 mr4"  height="30px" width="30px" src="d:/settings.svg" /></a>
       </form> 
  </article>
- <p align='center' class="f2 b--white grow dim" style="font-family: 'Cabin Sketch', cursive;">Welcome <%=(String)MyServlet.session.getAttribute("user")%></p>
+ <p align='center' class="f2 b--white grow dim" style="font-family: 'Cabin Sketch', cursive;">Welcome <%=(String)MyServlet.session.getAttribute("user")%>(Admin)</p>
   
 <button class='f1 dim bw2 br3 grow b--white' onclick="location.href='Form.jsp'"  type='button'  style="font-family: 'Libre Barcode 128 Text', cursive;">Logout</button>
 </div>

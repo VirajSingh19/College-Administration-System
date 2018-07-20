@@ -62,9 +62,8 @@ public class Admin extends HttpServlet {
 		 {
 			 String up[] = i.split(":");
 			 syso.println("<tr>");
-			 syso.println("<td> "+up[0]+"</td>");
-			 syso.println("<td> "+up[1]+"</td>");
-			 syso.println("<td> "+up[2]+"</td>");
+			 for(int j=0;j<up.length;j++)
+			 	syso.println("<td> "+up[j]+"</td>");
 			 syso.println("</tr>");
 		 }
 		 syso.println("</tbody>");			

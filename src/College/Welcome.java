@@ -26,16 +26,23 @@ public class Welcome extends HttpServlet {
        fn =n;	
     }
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		response.sendRedirect("Welcome.html");
 	PrintWriter syso = response.getWriter();
 	session = request.getSession();
-	String user = (String)session.getAttribute(fn);
-	String id = session.getId();
-	long creationtime = session.getCreationTime();
-	long lastacctime = session.getLastAccessedTime();
 	
+	
+	String u = request.getParameter("select");
+	
+	if(u.equals("Courses"))
+		syso.println("Courses");
+	else if(u.equals("Table"))
+		printtable(syso);
+	else if(u.equals("Fee"))
+		syso.println("Fee");
+	else if(u.equals("Modify"))
+		syso.println("Modify");
 	RequestDispatcher rd = request.getRequestDispatcher("Welcome.jsp");
-    rd.include(request, response);
+	rd.include(request, response);
+	
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -48,4 +55,39 @@ public class Welcome extends HttpServlet {
 	session.invalidate();		
 	}
 
+	static void printtable(PrintWriter syso)
+	{
+		try {
+		Database d = new Database();
+		String s = Database.admin();
+	    String str[] = s.split("#");
+	    syso.println("<div class='container'>");
+		syso.println("<table class='table'>");
+		syso.println("<thead>");
+		syso.println("<tr>");
+		syso.println("<th>UserName </th>");
+		syso.println("<th>Password </th>");
+		syso.println("<th>Rollno </th>");
+		syso.println("</tr>"); 
+		syso.println("</thead>");
+		syso.println("<tbody>");
+		 for(String i : str)
+		 {
+			 String up[] = i.split(":");
+			 syso.println("<tr>");
+			 for(int j=0;j<up.length;j++)
+				 syso.println("<td> "+up[j]+"</td>");
+			 syso.println("</tr>");
+		 }
+		 syso.println("</tbody>");			
+		 syso.println("</table>");			
+		 syso.println("</div>");	
+		}
+		catch(Exception e)
+		{
+			syso.println("Exception occurred!"+e.getMessage());
+		}
+	}
+
+	
 }

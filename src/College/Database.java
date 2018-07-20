@@ -18,8 +18,8 @@ public static void main(String args[])throws Exception
 	Database d = new Database();
 	
 //	delete("nick","nick");	
-	//System.out.println(login("Viraj", "admin"));
-	System.out.println(register("Rishabh", "Rajput","091" ));
+	System.out.println(login("Rishabh", "Rajput"));
+	//System.out.println(register("Rishabh", "Rajput","091" ));
 	
 }
 

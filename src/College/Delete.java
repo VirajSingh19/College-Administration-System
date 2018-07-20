@@ -39,11 +39,11 @@ public class Delete extends HttpServlet {
 			}
 			else
 			{
-				syso.println("<h3 align='center'> EWwww </h3>");
+				syso.println("<h3 align='center'> Can't delete </h3>");
 				rd.include(request, response);			
 			}
 		} catch (Exception e) {
-			syso.println("<h3 align='center'> EWwww Exception "+e.getMessage()+"</h3>");
+			syso.println("<h3 align='center'> Exception "+e.getMessage()+"</h3>");
 			rd.include(request, response);					
 		}
 		

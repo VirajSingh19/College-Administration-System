@@ -47,7 +47,7 @@ public class MyServlet extends HttpServlet {
 			else 
 			{
 			Welcome._init_(fn);
-			RequestDispatcher r = request.getRequestDispatcher("Welcome");
+			RequestDispatcher r = request.getRequestDispatcher("Welcome.jsp");
             r.forward(request, response);
 			}
 		}
