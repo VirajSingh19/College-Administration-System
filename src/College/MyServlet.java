@@ -39,9 +39,17 @@ public class MyServlet extends HttpServlet {
 		{
 			HttpSession session = request.getSession();
 			session.setAttribute("user", fn);
+			if(fn.equalsIgnoreCase("Viraj"))
+			{
+			RequestDispatcher r = request.getRequestDispatcher("Admin");
+            r.forward(request, response);	
+			}
+			else 
+			{
 			Welcome._init_(fn);
 			RequestDispatcher r = request.getRequestDispatcher("Welcome");
             r.forward(request, response);
+			}
 		}
 		
 		}catch(Exception e)

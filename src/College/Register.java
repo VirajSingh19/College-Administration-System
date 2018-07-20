@@ -23,11 +23,12 @@ public class Register extends HttpServlet {
 		PrintWriter syso = response.getWriter();
 		String user = request.getParameter("user");
 		String pssd = request.getParameter("pssd");
+		String rollno = request.getParameter("rollno");
 		
 		
 		try {
 			Database d = new Database();     
-			int i = Database.register(user, pssd); 
+			int i = Database.register(user, pssd, rollno); 
 			syso.println("<h3 align='center'> Successfuly Registered </h3>");	
 			RequestDispatcher rd = request.getRequestDispatcher("Register.jsp");
             rd.include(request, response);

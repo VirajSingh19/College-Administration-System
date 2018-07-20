@@ -34,35 +34,6 @@ public class Welcome extends HttpServlet {
 	long creationtime = session.getCreationTime();
 	long lastacctime = session.getLastAccessedTime();
 	
-	if(fn.equalsIgnoreCase("Viraj"))
-	{
-		try {
-		Database d = new Database();
-		String s = Database.admin();
-	    String str[] = s.split("#");
-		syso.println("<table>");
-		syso.println("<tr>");
-		syso.println("<th>UserName </th>");
-		syso.println("<th>Password </th>");
-		syso.println("</tr>"); 
-		 for(String i : str)
-		 {
-			 String up[] = i.split(":");
-			 syso.println("<tr>");
-			 syso.println("<td> "+up[0]+"</td>");
-			 syso.println("<td> "+up[1]+"</td>");
-			 syso.println("</tr>");
-		 }
-		syso.println("</table>");			
-		}
-		catch(Exception e)
-		{
-			syso.println("Exception occurred!"+e.getMessage());
-			RequestDispatcher rd = request.getRequestDispatcher("Welcome.jsp");
-		    rd.include(request, response);
-			
-		}
-	}
 	RequestDispatcher rd = request.getRequestDispatcher("Welcome.jsp");
     rd.include(request, response);
 	}

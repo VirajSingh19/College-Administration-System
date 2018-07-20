@@ -11,16 +11,21 @@ public class Database {
 		this.c =  DriverManager.getConnection("jdbc:sqlite:D:\\new.sqlite");  
 	}
 	//jdbc:sqlite:C:\\Users\\admin.labpc-67\\eclipse-workspace\\Servlet1\\WebContent\\servlet.sqlite
+	//jdbc:sqlite:D:\\new.sqlite
 	
 public static void main(String args[])throws Exception
 {
 	Database d = new Database();
 	
-	System.out.println( update("Rishabh","Rajput" ,"Rahputana") );
-	
 //	delete("nick","nick");	
+	//System.out.println(login("Viraj", "admin"));
+	System.out.println(register("Rishabh", "Rajput","091" ));
+	
+}
 
-	//System.out.println(delete("Rishabh", "dealer"));
+static void pwd()
+{
+	 System.out.println("Working Directory = " +System.getProperty("user.dir"));
 }
 
 static String login(String user,String pssd)throws Exception
@@ -43,11 +48,12 @@ static String login(String user,String pssd)throws Exception
 	return "not found";
 }
 
-static int register(String user,String pssd) throws SQLException
+static int register(String user,String pssd,String rollno) throws SQLException
 {
-	PreparedStatement s=c.prepareStatement("insert into persons(username,password) values(?,?)");
+	PreparedStatement s=c.prepareStatement("insert into persons(username,password,rollno) values(?,?,?)");
 	s.setString(1,user);
 	s.setString(2,pssd);
+	s.setString(3,rollno);
 	int i=s.executeUpdate();
 	s.close();
 	c.close();
@@ -62,7 +68,7 @@ static String admin()throws Exception
 	String s="";
 	while(rs.next())
 	{
-		s+= rs.getString(1)+":"+ rs.getString(2)+"#";
+		s+= rs.getString(1)+":"+ rs.getString(2)+":"+rs.getString(3)+"#";
 	}
 	rs.close();
 	st.close();
