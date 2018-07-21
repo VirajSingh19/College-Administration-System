@@ -16,7 +16,7 @@
 				</select>
 			</label>		
        <input class="dim bw2 br3 grow b--white" type = "submit" value = "Submit" style=""/><br><br>
-       <a href="Settings.jsp"  title="Login"><img class="mt4 mr4"  height="30px" width="30px" src="d:/settings.svg" /></a>
+       <a href="Settings.jsp"  title="Login"><img class="grow dim mt4 mr4"  height="30px" width="30px" src="d:/settings.svg" /></a>
       </form> 
  </article>
  <p align='center' class="f2 b--white grow dim" style="font-family: 'Cabin Sketch', cursive;">Welcome <%=(String)MyServlet.session.getAttribute("user")%></p>
