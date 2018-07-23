@@ -39,7 +39,7 @@ public class MyServlet extends HttpServlet {
 		{
 			session = request.getSession();
 			session.setAttribute("user", fn);
-			if(fn.equalsIgnoreCase("Viraj"))
+			if(Database.adminlogin(fn, pssd).equalsIgnoreCase("not found") == false)
 			{
 			RequestDispatcher r = request.getRequestDispatcher("Admin.jsp");
             r.forward(request, response);	

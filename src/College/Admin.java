@@ -46,7 +46,7 @@ public class Admin extends HttpServlet {
 		
 		try {
 		Database d = new Database();
-		String s = Database.admin();
+		String s = Database.generic("select * from student", 7);
 	    String str[] = s.split("#");
 	    syso.println("<div class='container'>");
 		syso.println("<table class='table'>");

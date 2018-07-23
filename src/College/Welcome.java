@@ -32,14 +32,12 @@ public class Welcome extends HttpServlet {
 	
 	String u = request.getParameter("select");
 	
-	if(u.equals("Courses"))
-		syso.println("Courses");
-	else if(u.equals("Table"))
-		printtable(syso);
+	if(u.equals("Marks"))
+		marks(syso, fn);
+	else if(u.equals("Attendance"))
+		attendance(syso,fn);
 	else if(u.equals("Fee"))
-		syso.println("Fee");
-	else if(u.equals("Modify"))
-		syso.println("Modify");
+		fee(syso, fn);
 	RequestDispatcher rd = request.getRequestDispatcher("Welcome.jsp");
 	rd.include(request, response);
 	
@@ -59,15 +57,19 @@ public class Welcome extends HttpServlet {
 	{
 		try {
 		Database d = new Database();
-		String s = Database.admin();
+		String s = Database.generic("select * from student", 7);
 	    String str[] = s.split("#");
 	    syso.println("<div class='container'>");
 		syso.println("<table class='table'>");
 		syso.println("<thead>");
 		syso.println("<tr>");
-		syso.println("<th>UserName </th>");
 		syso.println("<th>Password </th>");
-		syso.println("<th>Rollno </th>");
+		syso.println("<th>AdmissionNo </th>");
+		syso.println("<th>Balance Fee </th>");
+		syso.println("<th>Hostel </th>");
+		syso.println("<th>Name </th>");
+		syso.println("<th>Address </th>");
+		syso.println("<th>Branch </th>");
 		syso.println("</tr>"); 
 		syso.println("</thead>");
 		syso.println("<tbody>");
@@ -88,6 +90,105 @@ public class Welcome extends HttpServlet {
 			syso.println("Exception occurred!"+e.getMessage());
 		}
 	}
+	
+	static void attendance(PrintWriter syso,String user)
+	{
+		
+		try {
+			Database d = new Database();
+			String s = Database.generic("select attendance from info where name = '"+user+"'", 1);
+		    String str[] = s.split("#");
+		    syso.println("<div class='container'>");
+			syso.println("<table class='table'>");
+			syso.println("<thead>");
+			syso.println("<tr>");
+			syso.println("<th>Attendance </th>");
+			syso.println("</tr>"); 
+			syso.println("</thead>");
+			syso.println("<tbody>");
+			 for(String i : str)
+			 {
+				 String up[] = i.split(":");
+				 syso.println("<tr>");
+				 for(int j=0;j<up.length;j++)
+					 syso.println("<td> "+up[j]+"% </td>");
+				 syso.println("</tr>");
+			 }
+			 syso.println("</tbody>");			
+			 syso.println("</table>");			
+			 syso.println("</div>");	
+			
+		} catch (Exception e) {
+			syso.println("Exception occurred!"+e.getMessage());
+		}		
+		
+	}
 
+	static void fee(PrintWriter syso,String user)
+	{
+		
+		try {
+			Database d = new Database();
+			String s = Database.generic("select BalanceFee from student where name = '"+user+"'", 1);
+		    String str[] = s.split("#");
+		    syso.println("<div class='container'>");
+			syso.println("<table class='table'>");
+			syso.println("<thead>");
+			syso.println("<tr>");
+			syso.println("<th>Balance Fee </th>");
+			syso.println("</tr>"); 
+			syso.println("</thead>");
+			syso.println("<tbody>");
+			 for(String i : str)
+			 {
+				 String up[] = i.split(":");
+				 syso.println("<tr>");
+				 for(int j=0;j<up.length;j++)
+					 syso.println("<td> "+up[j]+"</td>");
+				 syso.println("</tr>");
+			 }
+			 syso.println("</tbody>");			
+			 syso.println("</table>");			
+			 syso.println("</div>");	
+			
+		} catch (Exception e) {
+			syso.println("Exception occurred!"+e.getMessage());
+		}		
+		
+	}
+
+	static void marks(PrintWriter syso,String user)
+	{
+		
+		try {
+			Database d = new Database();
+			String s = Database.generic("select marks from info where name = '"+user+"'", 1);
+		    String str[] = s.split("#");
+		    syso.println("<div class='container'>");
+			syso.println("<table class='table'>");
+			syso.println("<thead>");
+			syso.println("<tr>");
+			syso.println("<th>Marks </th>");
+			syso.println("</tr>"); 
+			syso.println("</thead>");
+			syso.println("<tbody>");
+			 for(String i : str)
+			 {
+				 String up[] = i.split(":");
+				 syso.println("<tr>");
+				 for(int j=0;j<up.length;j++)
+					 syso.println("<td> "+up[j]+"% </td>");
+				 syso.println("</tr>");
+			 }
+			 syso.println("</tbody>");			
+			 syso.println("</table>");			
+			 syso.println("</div>");	
+			
+		} catch (Exception e) {
+			syso.println("Exception occurred!"+e.getMessage());
+		}		
+		
+	}
+	
 	
 }

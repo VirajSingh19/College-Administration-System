@@ -9,10 +9,9 @@
       <form  action = "Welcome"  method = "GET" >
   			<label>
   				<select class="grow br2 br3 b--white" name="select" style="" >
-	  				<option value="Courses">Courses</option>
-	  				<option value="Table">Table</option>
-	  				<option value="Fee">Fee</option>
-	 				<option value="Modify">Modify</option>
+	  				<option value="Marks">Marks</option>
+	  				<option value="Attendance">Attendance</option>
+	  				<option value="Fee">Balance Fee</option>
 				</select>
 			</label>		
        <input class="dim bw2 br3 grow b--white" type = "submit" value = "Submit" style=""/><br><br>
